@@ -2252,14 +2252,16 @@ static SpvReflectResult ParseDescriptorBlockVariableUsage(
         return SPV_REFLECT_RESULT_ERROR_SPIRV_UNEXPECTED_BLOCK_DATA;
       }
 
-      uint32_t index = p_access_chain->indexes[index_index];
-  
-      if (index >= p_var->member_count) {
-        return SPV_REFLECT_RESULT_ERROR_SPIRV_INVALID_BLOCK_MEMBER_REFERENCE;
-      }
-
-      SpvReflectBlockVariable* p_member_var = &p_var->members[index];
+      //uint32_t index = p_access_chain->indexes[index_index];
       if (index_index < p_access_chain->index_count) {
+        uint32_t index = p_access_chain->indexes[index_index];
+
+        if (index >= p_var->member_count) {
+            return SPV_REFLECT_RESULT_ERROR_SPIRV_INVALID_BLOCK_MEMBER_REFERENCE;
+        }
+
+        SpvReflectBlockVariable* p_member_var = &p_var->members[index];
+
         SpvReflectResult result = ParseDescriptorBlockVariableUsage(
           p_parser,
           p_module,
@@ -2524,8 +2526,9 @@ static SpvReflectResult ParseInterfaceVariables(
     } else {
       // interface variables can only have input or output storage classes;
       // anything else is either a new addition or an error.
-      assert(false && "Unsupported storage class for interface variable");
-      return SPV_REFLECT_RESULT_ERROR_SPIRV_INVALID_STORAGE_CLASS;
+      //assert(false && "Unsupported storage class for interface variable");
+      //return SPV_REFLECT_RESULT_ERROR_SPIRV_INVALID_STORAGE_CLASS;
+        continue;
     }
 
     bool has_built_in = p_node->decorations.is_built_in;
