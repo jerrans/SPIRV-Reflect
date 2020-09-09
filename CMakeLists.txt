@@ -25,6 +25,7 @@ target_compile_options(spirv-reflect PRIVATE
     $<$<CXX_COMPILER_ID:AppleClang>:-Wall -Werror>)
 set_target_properties(spirv-reflect PROPERTIES CXX_STANDARD 11)
 target_include_directories(spirv-reflect PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+set(SPIRV_REFLECT_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(examples)
 add_subdirectory(util/stripper)
